@@ -6,7 +6,7 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Menu</div>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="{{ route('samples.index') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Muestras
                         </a>
@@ -16,7 +16,9 @@
         </div>
         <div id="layoutSidenav_content">
             <main>
-                @yield('pagecontent')
+                <div class="container-fluid px-4">
+                    @yield('pagecontent')
+                </div>
             </main>
         </div>
     </div>

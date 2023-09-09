@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('samples', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('forest_region_id')->nullable();
+            $table->foreign('forest_region_id')->references('id')->on('forest_regions');
             $table->string('code', 20)->unique();
             $table->string('name', 200)->unique();
             $table->unsignedBigInteger('department_id')->nullable();
