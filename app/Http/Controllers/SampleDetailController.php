@@ -46,6 +46,25 @@ class SampleDetailController extends Controller
                 'size' => 'required|decimal:2',
                 'color_id' => 'required|integer|exists:catalogs,id',
                 'identifier' => 'required'
+            ],['bottlenumber.required' => 'El campo N.Bote es obligatorio.',
+                'bottlenumber.integer' => 'El campo N.Bote deber ser un entero.',
+                'picker.required' => 'El campo Colector es obligatorio.',
+                'datepicker.required' => 'El campo Fecha Colecta es obligatorio.',
+                'period_id.required' => 'El campo Periodo LDSF es obligatorio.',
+                'order.required' => 'El campo Orden es obligatorio.',
+                'family.required' => 'El campo Familia es obligatorio.',
+                'subfamily.required' => 'El campo Sub Familia es obligatorio.',
+                'gender.required' => 'El campo Genero es obligatorio.',
+                'species.required' => 'El campo Especie es obligatorio.',
+                'genitaliascore.required' => 'El campo Resultado Genitalia es obligatorio.',
+                'finalscore.required' => 'El campo Resultado Final es obligatorio.',
+                'sex_id.required' => 'El campo Sexo es obligatorio.',
+                'quantity.required' => 'El campo Cantidad es obligatorio.',
+                'quantity.decimal' => 'El campo Cantidad requiere dos numeros decimales .',
+                'size.required' => 'El campo Tamaño es obligatorio.',
+                'size.decimal' => 'El campo Tamaño requiere dos numeros decimales .',
+                'color_id.required' => 'El campo Color es obligatorio.',
+                'identifier.required' => 'El campo Identificador es obligatorio.',
             ]);
 
         SampleDetail::create($request->all());
