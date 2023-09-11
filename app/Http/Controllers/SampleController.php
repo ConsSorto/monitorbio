@@ -20,7 +20,7 @@ class SampleController extends Controller
     {
         $samples = Sample::latest()->paginate(10);
 
-        return view('samples.index',compact('samples'))
+        return view('samples.index', compact('samples'))
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
@@ -49,12 +49,30 @@ class SampleController extends Controller
             'utmx' => 'required|integer',
             'utmy' => 'required|integer',
             'msmn' => 'required|integer'
-        ]);
+        ], ['forest_region_id.required' => 'El campo region forestal es obligatorio.',
+            'forest_region_id.integer' => 'El campo region forestal deber ser un entero.',
+            'forest_region_id.exists' => 'El campo region forestal es invalido.',
+            'department_id.required' => 'El campo Departamento es obligatorio.',
+            'department_id.integer' => 'El campo Departamento deber ser un entero.',
+            'department_id.exists' => 'El campo region forestal es invalido.',
+            'municipality_id.required' => 'El campo Municipio es obligatorio.',
+            'place.required' => 'El campo Lugar es obligatorio.',
+            'code.required' => 'El campo Codigo es obligatorio.',
+            'code.unique' => 'El valor campo Codigo ya fue utilizado.',
+            'name.required' => 'El campo Nombre es obligatorio.',
+            'name.unique' => 'El valor campo Nombre ya fue utilizado.',
+            'utmx.required' => 'El campo utmx es obligatorio.',
+            'utmx.integer' => 'El valor campo utmx deber ser un entero.',
+            'utmy.required' => 'El campo utmy es obligatorio.',
+            'utmy.integer' => 'El valor campo utmy deber ser un entero.',
+            'msmn.required' => 'El campo msmn es obligatorio.',
+            'msmn.integer' => 'El valor campo msmn deber ser un entero.']
+        );
 
         Sample::create($request->all());
 
         return redirect()->route('samples.index')
-            ->with('success','Muestra creada correctamente.');
+            ->with('success', 'Muestra creada correctamente.');
     }
 
     /**
@@ -62,13 +80,14 @@ class SampleController extends Controller
      */
     public function show(Sample $sample)
     {
-        $periods = Catalog::where('catalog_id','1')->get();
-        $sexs = Catalog::where('catalog_id','4')->get();
-        $colors = Catalog::where('catalog_id','9')->get();
+        $periods = Catalog::where('catalog_id', '1')->get();
+        $sexs = Catalog::where('catalog_id', '4')->get();
+        $colors = Catalog::where('catalog_id', '9')->get();
         $sampleDetails = $sample->details;
 
-        return view('samples.show',compact('sample', 'periods', 'sexs', 'colors', 'sampleDetails'));
+        return view('samples.show', compact('sample', 'periods', 'sexs', 'colors', 'sampleDetails'));
     }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -78,7 +97,7 @@ class SampleController extends Controller
         $departments = Department::all();
         $municipalities = Municipality::where('department_id', $sample->department_id)->get();
 
-        return view('samples.edit',compact('sample','departments', 'forest_regions', 'municipalities'));
+        return view('samples.edit', compact('sample', 'departments', 'forest_regions', 'municipalities'));
     }
 
     /**
@@ -96,12 +115,29 @@ class SampleController extends Controller
             'utmx' => 'required|integer',
             'utmy' => 'required|integer',
             'msmn' => 'required|integer'
-        ]);
+        ], ['forest_region_id.required' => 'El campo region forestal es obligatorio.',
+            'forest_region_id.integer' => 'El campo region forestal deber ser un entero.',
+            'forest_region_id.exists' => 'El campo region forestal es invalido.',
+            'department_id.required' => 'El campo Departamento es obligatorio.',
+            'department_id.integer' => 'El campo Departamento deber ser un entero.',
+            'department_id.exists' => 'El campo region forestal es invalido.',
+            'municipality_id.required' => 'El campo Municipio es obligatorio.',
+            'place.required' => 'El campo Lugar es obligatorio.',
+            'code.required' => 'El campo Codigo es obligatorio.',
+            'code.unique' => 'El valor campo Codigo ya fue utilizado.',
+            'name.required' => 'El campo Nombre es obligatorio.',
+            'name.unique' => 'El valor campo Nombre ya fue utilizado.',
+            'utmx.required' => 'El campo utmx es obligatorio.',
+            'utmx.integer' => 'El valor campo utmx deber ser un entero.',
+            'utmy.required' => 'El campo utmy es obligatorio.',
+            'utmy.integer' => 'El valor campo utmy deber ser un entero.',
+            'msmn.required' => 'El campo msmn es obligatorio.',
+            'msmn.integer' => 'El valor campo msmn deber ser un entero.']);
 
         $sample->update($request->all());
 
         return redirect()->route('samples.index')
-            ->with('success','Muestra modificada correctamente.');
+            ->with('success', 'Muestra modificada correctamente.');
     }
 
     /**
@@ -112,6 +148,6 @@ class SampleController extends Controller
         $sample->delete();
 
         return redirect()->route('samples.index')
-            ->with('success','Muestra borrada correctamente.');
+            ->with('success', 'Muestra borrada correctamente.');
     }
 }
