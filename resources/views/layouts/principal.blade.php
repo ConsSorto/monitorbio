@@ -8,7 +8,7 @@
                         <div class="sb-sidenav-menu-heading">Menu</div>
                         <a class="nav-link" href="{{ route('samples.index') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Muestras
+                            Colectas
                         </a>
                     </div>
                 </div>

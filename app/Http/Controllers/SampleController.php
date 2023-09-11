@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Catalog;
 use App\Models\Department;
 use App\Models\Municipality;
 use App\Models\ForestRegion;
@@ -17,10 +18,10 @@ class SampleController extends Controller
      */
     public function index()
     {
-        $samples = Sample::latest()->paginate(5);
+        $samples = Sample::latest()->paginate(10);
 
         return view('samples.index',compact('samples'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -61,9 +62,13 @@ class SampleController extends Controller
      */
     public function show(Sample $sample)
     {
-        return view('samples.show',compact('sample'));
-    }
+        $periods = Catalog::where('catalog_id','1')->get();
+        $sexs = Catalog::where('catalog_id','4')->get();
+        $colors = Catalog::where('catalog_id','9')->get();
+        $sampleDetails = $sample->details;
 
+        return view('samples.show',compact('sample', 'periods', 'sexs', 'colors', 'sampleDetails'));
+    }
     /**
      * Show the form for editing the specified resource.
      */

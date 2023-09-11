@@ -11,7 +11,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <!-- <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">-->
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet"/>
     <!-- Scripts -->
 
@@ -45,11 +45,11 @@
                             </li>
                         @endif
 
-                        @if (Route::has('register'))
+                      {{--  @if (Route::has('register'))
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
-                        @endif
+                        @endif--}}
                     @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

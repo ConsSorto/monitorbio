@@ -25,4 +25,8 @@ class Sample extends Model
     {
         return $this->belongsTo(Municipality::class);
     }
+    public function details()
+    {
+        return $this->hasMany(SampleDetail::class)->orderBy('id', 'desc');
+    }
 }

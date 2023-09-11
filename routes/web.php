@@ -25,4 +25,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('samples', \App\Http\Controllers\SampleController::class);
     Route::get('get-municipalities', [\App\Http\Controllers\MunicipalityController::class, 'getMunicipalities'])->name('getMunicipalities');
 });
+Route::resource('sampleDetails', \App\Http\Controllers\SampleDetailController::class);
 
