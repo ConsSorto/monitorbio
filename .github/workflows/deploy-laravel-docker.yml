@@ -24,8 +24,12 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner | toLowerCase }}/laravel-app:${{ github.ref_name }} .
+          REPO_NAME="${{ github.repository_owner }}"
+          REPO_NAME=$(echo "$REPO_NAME" | tr '[:upper:]' '[:lower:]')  # Convierte el nombre del repositorio a minúsculas
+          docker build -t ghcr.io/$REPO_NAME/laravel-app:${{ github.ref_name }} .
 
       - name: Push Docker image to GitHub Packages
         run: |
-          docker push ghcr.io/${{ github.repository_owner | toLowerCase }}/laravel-app:${{ github.ref_name }}
+          REPO_NAME="${{ github.repository_owner }}"
+          REPO_NAME=$(echo "$REPO_NAME" | tr '[:upper:]' '[:lower:]')  # Convierte el nombre del repositorio a minúsculas
+          docker push ghcr.io/$REPO_NAME/laravel-app:${{ github.ref_name }}
