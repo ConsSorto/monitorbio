@@ -3,9 +3,9 @@ name: Build and Push Laravel Image on Tag or Release
 on:
   push:
     tags:
-      - '*'  # Ejecuta cuando se empuja un tag
+      - '*'  
   release:
-    types: [created]  # Solo al crear una release
+    types: [created]
 
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GHCR_PAT }}
 
       - name: Build Docker image
         run: |
